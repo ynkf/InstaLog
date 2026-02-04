@@ -63,6 +63,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v6
         with:
-          name: quicklog-extension
+          name: instalog-extension
           path: '*.vsix'
           if-no-files-found: error

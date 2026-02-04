@@ -1,6 +1,6 @@
-# QuickLog
+# InstaLog
 
-Quickly insert labeled console.log statements for your selected variables with simple keyboard shortcuts.
+Instantly insert labeled console.log statements for your selected variables with simple keyboard shortcuts.
 
 ## Features
 
@@ -15,8 +15,8 @@ Quickly insert labeled console.log statements for your selected variables with s
 1. Select a variable or expression in your code
 2. Press `Alt+-` to log after selection or `Alt+.` to log before selection
 3. Or use the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for:
-   - `QuickLog: Log After Selection` - Inserts console.log below the current line
-   - `QuickLog: Log Before Selection` - Inserts console.log above the current line
+   - `InstaLog: Log After Selection` - Inserts console.log below the current line
+   - `InstaLog: Log Before Selection` - Inserts console.log above the current line
 
 ### Example
 
@@ -48,7 +48,7 @@ console.log('userName: ', userName);
 You can customize these keybindings in VS Code:
 
 1. Open Keyboard Shortcuts (`Ctrl+K Ctrl+S` or `Cmd+K Cmd+S`)
-2. Search for `quicklog`
+2. Search for `instalog`
 3. Assign your preferred shortcuts
 
 ## Requirements
@@ -57,7 +57,7 @@ No additional requirements or dependencies.
 
 ## Known Issues
 
-Please report issues on [GitHub](https://github.com/ynkf/QuickLog/issues).
+Please report issues on [GitHub](https://github.com/ynkf/InstaLog/issues).
 
 ## Release Notes
 

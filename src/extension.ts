@@ -3,8 +3,8 @@ import { logAfterSelection, logBeforeSelection } from './commands';
 
 export function activate(context: vscode.ExtensionContext) {
   const commandMap = {
-    'quicklog.logAfterSelection': logAfterSelection,
-    'quicklog.logBeforeSelection': logBeforeSelection,
+    'instalog.logAfterSelection': logAfterSelection,
+    'instalog.logBeforeSelection': logBeforeSelection,
   };
 
   Object.entries(commandMap).forEach(([command, handler]) => {
