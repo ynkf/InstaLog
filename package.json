@@ -2,7 +2,7 @@
   "name": "quicklog",
   "displayName": "QuickLog",
   "description": "Just log a variable with a simple keybind",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "ynkf",
   "repository": {
     "type": "git",
@@ -26,6 +26,20 @@
       {
         "command": "quicklog.logBeforeSelection",
         "title": "Log Before Selection"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "quicklog.logAfterSelection",
+        "key": "alt+-",
+        "mac": "alt+-",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "quicklog.logBeforeSelection",
+        "key": "alt+.",
+        "mac": "alt+.",
+        "when": "editorTextFocus"
       }
     ]
   },
