@@ -16,6 +16,10 @@ export function getLogStatementByFileExtension(
     case 'js':
     case 'jsx':
       return `${indentation}console.log('${selectedText}: ', ${selectedText});\n`;
+    case 'py':
+      return `${indentation}print(f'${selectedText}: {${selectedText}}')\n`;
+    case 'ipynb':
+      return `\n${indentation}print(f'${selectedText}: {${selectedText}}')\n`;
     default:
       throw new Error(`Unsupported file extension: ${fileExtension}`);
   }
