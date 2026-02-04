@@ -17,7 +17,7 @@ export function getLogStatementByLanguageId(
     case 'typescriptreact':
     case 'javascript':
     case 'javascriptreact':
-      logStatement = `console.log(${selectedText});`;
+      logStatement = `console.log('${selectedText}: ', ${selectedText});`;
       break;
     default:
       throw new Error(`Unsupported language: ${languageId}`);
