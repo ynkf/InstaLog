@@ -3,6 +3,7 @@
   "displayName": "InstaLog",
   "description": "Just log a variable with a simple keybind",
   "version": "1.0.0",
+  "icon": "icon.png",
   "publisher": "ynkf",
   "repository": {
     "type": "git",
