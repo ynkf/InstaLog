@@ -1,12 +1,12 @@
 {
-  "name": "quicklog",
-  "displayName": "QuickLog",
+  "name": "instalog",
+  "displayName": "InstaLog",
   "description": "Just log a variable with a simple keybind",
   "version": "1.0.0",
   "publisher": "ynkf",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ynkf/QuickLog"
+    "url": "https://github.com/ynkf/InstaLog"
   },
   "license": "MIT",
   "engines": {
@@ -20,23 +20,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "quicklog.logAfterSelection",
+        "command": "instalog.logAfterSelection",
         "title": "Log After Selection"
       },
       {
-        "command": "quicklog.logBeforeSelection",
+        "command": "instalog.logBeforeSelection",
         "title": "Log Before Selection"
       }
     ],
     "keybindings": [
       {
-        "command": "quicklog.logAfterSelection",
+        "command": "instalog.logAfterSelection",
         "key": "alt+-",
         "mac": "alt+-",
         "when": "editorTextFocus"
       },
       {
-        "command": "quicklog.logBeforeSelection",
+        "command": "instalog.logBeforeSelection",
         "key": "alt+.",
         "mac": "alt+.",
         "when": "editorTextFocus"
@@ -64,7 +64,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
     "@types/vscode": "^1.108.1",
-    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.2",
