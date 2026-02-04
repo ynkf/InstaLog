@@ -4,37 +4,42 @@ import { getLogStatementByLanguageId } from '../helpers/log-statement-mapping';
 suite('getLogStatementByLanguageId Tests', () => {
   test('should generate console.log for TypeScript', () => {
     const result = getLogStatementByLanguageId('typescript', 'myVar', '');
-    assert.strictEqual(result, 'console.log(myVar);');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);");
   });
 
   test('should generate console.log for TypeScript React', () => {
     const result = getLogStatementByLanguageId('typescriptreact', 'myVar', '');
-    assert.strictEqual(result, 'console.log(myVar);');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);");
   });
 
   test('should generate console.log for JavaScript', () => {
     const result = getLogStatementByLanguageId('javascript', 'myVar', '');
-    assert.strictEqual(result, 'console.log(myVar);');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);");
   });
 
   test('should generate console.log for JavaScript React', () => {
     const result = getLogStatementByLanguageId('javascriptreact', 'myVar', '');
-    assert.strictEqual(result, 'console.log(myVar);');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);");
   });
 
   test('should preserve indentation with spaces', () => {
     const result = getLogStatementByLanguageId('typescript', 'myVar', '  ');
-    assert.strictEqual(result, '  console.log(myVar);');
+    assert.strictEqual(result, "  console.log('myVar: ', myVar);");
   });
 
   test('should preserve indentation with tabs', () => {
     const result = getLogStatementByLanguageId('typescript', 'myVar', '\t\t');
-    assert.strictEqual(result, '\t\tconsole.log(myVar);');
+    assert.strictEqual(result, "\t\tconsole.log('myVar: ', myVar);");
   });
 
   test('should handle complex expressions', () => {
     const result = getLogStatementByLanguageId('typescript', 'obj.prop', '');
-    assert.strictEqual(result, 'console.log(obj.prop);');
+    assert.strictEqual(result, "console.log('obj.prop: ', obj.prop);");
+  });
+
+  test('should handle expressions with spaces', () => {
+    const result = getLogStatementByLanguageId('typescript', 'user.name', '');
+    assert.strictEqual(result, "console.log('user.name: ', user.name);");
   });
 
   test('should throw error for unknown language', () => {

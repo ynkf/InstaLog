@@ -1,20 +1,22 @@
 # QuickLog
 
-Quickly insert console.log statements for your selected variables with simple keyboard shortcuts.
+Quickly insert labeled console.log statements for your selected variables with simple keyboard shortcuts.
 
 ## Features
 
 - **Log After Selection**: Insert a console.log statement on the line after your selection
 - **Log Before Selection**: Insert a console.log statement on the line before your selection
 - **Smart Indentation**: Automatically matches the indentation of your selected code
+- **Labeled Output**: Includes variable name in the log for easier debugging
 - **Multi-Language Support**: Works with JavaScript, TypeScript, and their React variants
 
 ## Usage
 
 1. Select a variable or expression in your code
-2. Use the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for:
-   - `Log After Selection` - Inserts console.log below the current line
-   - `Log Before Selection` - Inserts console.log above the current line
+2. Press `Alt+-` to log after selection or `Alt+.` to log before selection
+3. Or use the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for:
+   - `QuickLog: Log After Selection` - Inserts console.log below the current line
+   - `QuickLog: Log Before Selection` - Inserts console.log above the current line
 
 ### Example
 
@@ -24,11 +26,11 @@ Quickly insert console.log statements for your selected variables with simple ke
 const userName = 'John';
 ```
 
-**After selecting `userName` and running "Log After Selection":**
+**After selecting `userName` and pressing `Alt+-`:**
 
 ```typescript
 const userName = 'John';
-console.log(userName);
+console.log('userName: ', userName);
 ```
 
 ## Supported Languages
@@ -38,9 +40,12 @@ console.log(userName);
 - JavaScript React (`.jsx`)
 - TypeScript React (`.tsx`)
 
-## Keybindings
+## Default Keybindings
 
-You can set custom keybindings in VS Code:
+- **Log After Selection**: `Alt+-` (Insert log statement after current line)
+- **Log Before Selection**: `Alt+.` (Insert log statement before current line)
+
+You can customize these keybindings in VS Code:
 
 1. Open Keyboard Shortcuts (`Ctrl+K Ctrl+S` or `Cmd+K Cmd+S`)
 2. Search for `quicklog`
@@ -56,13 +61,14 @@ Please report issues on [GitHub](https://github.com/ynkf/QuickLog/issues).
 
 ## Release Notes
 
-### 0.0.1
+### 1.0.0
 
-Initial release of QuickLog
+First stable release! 🎉
 
-- Basic console.log insertion
-- Support for JavaScript and TypeScript
+- Console.log insertion with labeled output
+- Default keybindings (`Alt+.` and `Alt+-`)
 - Smart indentation handling
+- Support for JS/TS/JSX/TSX files
 
 ---
 
