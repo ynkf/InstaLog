@@ -1,36 +1,49 @@
 # InstaLog
 
-Instantly insert labeled console.log statements for your selected variables with simple keyboard shortcuts.
+Instantly insert labeled log statements for your selected variables with simple keyboard shortcuts.
 
 ## Features
 
-- **Log After Selection**: Insert a console.log statement on the line after your selection
-- **Log Before Selection**: Insert a console.log statement on the line before your selection
+- **Log After Selection**: Insert a log statement on the line after your selection
+- **Log Before Selection**: Insert a log statement on the line before your selection
 - **Smart Indentation**: Automatically matches the indentation of your selected code
 - **Labeled Output**: Includes variable name in the log for easier debugging
-- **Multi-Language Support**: Works with JavaScript, TypeScript, and their React variants
+- **Multi-Language Support**: Works with JavaScript, TypeScript, Python, and Jupyter Notebooks
 
 ## Usage
 
 1. Select a variable or expression in your code
 2. Press `Alt+-` to log after selection or `Alt+.` to log before selection
 3. Or use the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and search for:
-   - `InstaLog: Log After Selection` - Inserts console.log below the current line
-   - `InstaLog: Log Before Selection` - Inserts console.log above the current line
+   - `InstaLog: Log After Selection` - Inserts log statement below the current line
+   - `InstaLog: Log Before Selection` - Inserts log statement above the current line
 
-### Example
+### Examples
 
-**Before:**
+**JavaScript/TypeScript:**
 
 ```typescript
 const userName = 'John';
 ```
 
-**After selecting `userName` and pressing `Alt+-`:**
+After selecting `userName` and pressing `Alt+-`:
 
 ```typescript
 const userName = 'John';
 console.log('userName: ', userName);
+```
+
+**Python:**
+
+```python
+user_name = 'John'
+```
+
+After selecting `user_name` and pressing `Alt+-`:
+
+```python
+user_name = 'John'
+print(f'user_name: {user_name}')
 ```
 
 ## Supported Languages
@@ -39,6 +52,8 @@ console.log('userName: ', userName);
 - TypeScript (`.ts`)
 - JavaScript React (`.jsx`)
 - TypeScript React (`.tsx`)
+- Python (`.py`)
+- Jupyter Notebook (`.ipynb`)
 
 ## Default Keybindings
 
@@ -61,14 +76,13 @@ Please report issues on [GitHub](https://github.com/ynkf/InstaLog/issues).
 
 ## Release Notes
 
-### 1.0.0
+### 1.1.0
 
-First stable release! 🎉
+- Added Python support (`.py`)
+- Added Jupyter Notebook support (`.ipynb`)
+- Changed getLogStatement to use File Extensions instead of Language Ids
 
-- Console.log insertion with labeled output
-- Default keybindings (`Alt+.` and `Alt+-`)
-- Smart indentation handling
-- Support for JS/TS/JSX/TSX files
+(see [CHANGELOG.md](CHANGELOG.md) for all release notes)
 
 ---
 

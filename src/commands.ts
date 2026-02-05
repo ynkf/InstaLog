@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getLogStatementByLanguageId } from './helpers/log-statement-mapping';
+import { getLogStatementByFileExtension } from './helpers/log-statement-mapping';
 
 export function logAfterSelection(): void {
   logSelection(1);
@@ -18,9 +18,6 @@ function logSelection(position: number): void {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     const selection = editor.selection;
-    vscode.window.showInformationMessage(
-      'Logging in File: ' + editor.document.fileName,
-    );
     const selectedText = editor.document.getText(selection);
 
     if (!selectedText) {
@@ -28,18 +25,18 @@ function logSelection(position: number): void {
       return;
     }
 
+    const fileExtension = editor.document.uri.path.split('.').pop() || '';
     const selectedLineNumber = selection.active.line;
     const indentation =
       editor.document.lineAt(selectedLineNumber).text.match(/^\s*/)?.[0] || '';
 
     let logStatement = '';
     try {
-      logStatement =
-        getLogStatementByLanguageId(
-          editor.document.languageId,
-          selectedText,
-          indentation,
-        ) + '\n';
+      logStatement = getLogStatementByFileExtension(
+        fileExtension,
+        selectedText,
+        indentation,
+      );
     } catch (e) {
       if (e instanceof Error) {
         vscode.window.showErrorMessage(e.message);

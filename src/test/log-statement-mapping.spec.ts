@@ -1,51 +1,71 @@
 import * as assert from 'assert';
-import { getLogStatementByLanguageId } from '../helpers/log-statement-mapping';
+import { getLogStatementByFileExtension } from '../helpers/log-statement-mapping';
 
-suite('getLogStatementByLanguageId Tests', () => {
+suite('getLogStatementByFileExtension Tests', () => {
   test('should generate console.log for TypeScript', () => {
-    const result = getLogStatementByLanguageId('typescript', 'myVar', '');
-    assert.strictEqual(result, "console.log('myVar: ', myVar);");
+    const result = getLogStatementByFileExtension('ts', 'myVar', '');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);\n");
   });
 
   test('should generate console.log for TypeScript React', () => {
-    const result = getLogStatementByLanguageId('typescriptreact', 'myVar', '');
-    assert.strictEqual(result, "console.log('myVar: ', myVar);");
+    const result = getLogStatementByFileExtension('tsx', 'myVar', '');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);\n");
   });
 
   test('should generate console.log for JavaScript', () => {
-    const result = getLogStatementByLanguageId('javascript', 'myVar', '');
-    assert.strictEqual(result, "console.log('myVar: ', myVar);");
+    const result = getLogStatementByFileExtension('js', 'myVar', '');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);\n");
   });
 
   test('should generate console.log for JavaScript React', () => {
-    const result = getLogStatementByLanguageId('javascriptreact', 'myVar', '');
-    assert.strictEqual(result, "console.log('myVar: ', myVar);");
+    const result = getLogStatementByFileExtension('jsx', 'myVar', '');
+    assert.strictEqual(result, "console.log('myVar: ', myVar);\n");
   });
 
-  test('should preserve indentation with spaces', () => {
-    const result = getLogStatementByLanguageId('typescript', 'myVar', '  ');
-    assert.strictEqual(result, "  console.log('myVar: ', myVar);");
+  test('should generate print for Python', () => {
+    const result = getLogStatementByFileExtension('py', 'my_var', '');
+    assert.strictEqual(result, "print(f'my_var: {my_var}')\n");
   });
 
-  test('should preserve indentation with tabs', () => {
-    const result = getLogStatementByLanguageId('typescript', 'myVar', '\t\t');
-    assert.strictEqual(result, "\t\tconsole.log('myVar: ', myVar);");
+  test('should generate print for Jupyter Notebook with extra newline', () => {
+    const result = getLogStatementByFileExtension('ipynb', 'my_var', '');
+    assert.strictEqual(result, "\nprint(f'my_var: {my_var}')\n");
+  });
+
+  test('should preserve indentation with spaces for TypeScript', () => {
+    const result = getLogStatementByFileExtension('ts', 'myVar', '  ');
+    assert.strictEqual(result, "  console.log('myVar: ', myVar);\n");
+  });
+
+  test('should preserve indentation with tabs for TypeScript', () => {
+    const result = getLogStatementByFileExtension('ts', 'myVar', '\t\t');
+    assert.strictEqual(result, "\t\tconsole.log('myVar: ', myVar);\n");
+  });
+
+  test('should preserve indentation for Python', () => {
+    const result = getLogStatementByFileExtension('py', 'my_var', '    ');
+    assert.strictEqual(result, "    print(f'my_var: {my_var}')\n");
+  });
+
+  test('should preserve indentation for Jupyter Notebook', () => {
+    const result = getLogStatementByFileExtension('ipynb', 'my_var', '  ');
+    assert.strictEqual(result, "\n  print(f'my_var: {my_var}')\n");
   });
 
   test('should handle complex expressions', () => {
-    const result = getLogStatementByLanguageId('typescript', 'obj.prop', '');
-    assert.strictEqual(result, "console.log('obj.prop: ', obj.prop);");
+    const result = getLogStatementByFileExtension('ts', 'obj.prop', '');
+    assert.strictEqual(result, "console.log('obj.prop: ', obj.prop);\n");
   });
 
-  test('should handle expressions with spaces', () => {
-    const result = getLogStatementByLanguageId('typescript', 'user.name', '');
-    assert.strictEqual(result, "console.log('user.name: ', user.name);");
+  test('should handle expressions with underscores', () => {
+    const result = getLogStatementByFileExtension('py', 'user_name', '');
+    assert.strictEqual(result, "print(f'user_name: {user_name}')\n");
   });
 
-  test('should throw error for unknown language', () => {
+  test('should throw error for unsupported file extension', () => {
     assert.throws(
-      () => getLogStatementByLanguageId('unknown', 'myVar', ''),
-      /Unsupported language: unknown/,
+      () => getLogStatementByFileExtension('unknown', 'myVar', ''),
+      /Unsupported file extension: unknown/,
     );
   });
 });
