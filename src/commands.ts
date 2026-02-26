@@ -2,19 +2,19 @@ import * as vscode from 'vscode';
 import { getLogStatementByFileExtension } from './helpers/log-statement-mapping';
 
 export function logAfterSelection(): void {
-  logSelection(1);
+  logSelection('after');
 }
 
 export function logBeforeSelection(): void {
-  logSelection(0);
+  logSelection('before');
 }
 
 /**
  * Logs the selected text either before or after the selection.
- * @param position 0 for before, 1 for after
+ * @param position Determines whether to log before or after the selection ('before' | 'after').
  * @returns void
  */
-function logSelection(position: number): void {
+function logSelection(position: 'before' | 'after'): void {
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     const selection = editor.selection;
@@ -44,11 +44,30 @@ function logSelection(position: number): void {
       }
     }
 
+    const targetLineNumber =
+      position === 'before'
+        ? selectedLineNumber
+        : getNonChainedLineNumber(editor, selectedLineNumber + 1);
+
     editor.edit((editBuilder) => {
       editBuilder.insert(
-        new vscode.Position(selectedLineNumber + position, 0),
+        new vscode.Position(targetLineNumber, 0),
         logStatement,
       );
     });
   }
+}
+
+function getNonChainedLineNumber(
+  editor: vscode.TextEditor,
+  lineNumber: number,
+): number {
+  const isChained = editor.document
+    .lineAt(lineNumber)
+    .text.trimStart()
+    .startsWith('.');
+
+  return isChained
+    ? getNonChainedLineNumber(editor, lineNumber + 1)
+    : lineNumber;
 }
